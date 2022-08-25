@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-import { secret } from '../config/secrets'
+import { secret } from '../../../config/secrets'
 
 // TODO: Import the users model here
 

@@ -3,8 +3,8 @@ import express from 'express'
 import helmet from 'helmet'
 
 import { logger } from './middleware/logger'
-import { router as HelloRouter } from './routes/pulse'
-import { router as AuthRouter } from './routes/auth_router'
+import { router as HelloRouter } from './resources/pulse/pulse'
+import { router as AuthRouter } from './resources/auth/auth_router'
 
 // A server, to configure
 export const server = express()

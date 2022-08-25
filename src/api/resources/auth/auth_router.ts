@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { loginUser, registerUser } from '../controllers/authHandler'
+import { loginUser, registerUser } from '../auth/authHandler'
 
 export let router: Router = Router()
 
