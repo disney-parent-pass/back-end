@@ -34,7 +34,7 @@ Table posts as P {
   park_area_id int [ref: > park_area.id]
   area_ride_id int [ref: > area_rides.id]
   is_open bit // 1 or 0 (true / false)
-  time timestamp
+  time  int // epoch time
   number_of_kids int
   zapped bit // soft delete
 }
