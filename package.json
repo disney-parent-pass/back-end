@@ -7,6 +7,7 @@
     "build": "tsc -p tsconfig.build.json",
     "start": "tsc & node .",
     "dev": "tsc -w & nodemon .",
+    "migrate": "npx knex migrate:latest --knexfile ./src/database/knexfile.js",
     "test": "cross-env DB_ENV=testing jest --watch"
   },
   "repository": {
