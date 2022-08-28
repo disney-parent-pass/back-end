@@ -1,4 +1,4 @@
-import { server } from './api/server'
+import server from './api/server'
 
 const port = process.env.PORT || 5000
 
