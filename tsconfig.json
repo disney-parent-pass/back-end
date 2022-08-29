@@ -4,7 +4,6 @@
     "types": ["node", "jest"],
     "esModuleInterop": true,
     "target": "es6",
-    "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
@@ -13,5 +12,5 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["."]
+  "include": ["./src/**/**/**/**.ts", "./src/**/**/**/**.js"]
 }

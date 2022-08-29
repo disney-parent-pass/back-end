@@ -8,14 +8,14 @@ module.exports = {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
-      filename: './database/dev.db3',
+      filename: './src/database/dev.db3',
     },
     migrations: {
-      directory: './database/dev/migrations',
+      directory: './src/database/dev/migrations',
       tableName: 'dbmigrations',
     },
     seeds: {
-      directory: './database/dev/seeds',
+      directory: './src/database/dev/seeds',
     },
     pool: {
       afterCreate: (connection, done) => {
@@ -28,14 +28,14 @@ module.exports = {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
-      filename: './database/test.db3',
+      filename: './src/database/test.db3',
     },
     migrations: {
-      directory: './database/testing/migrations',
+      directory: './src/database/testing/migrations',
       tableName: 'dbmigrations',
     },
     seeds: {
-      directory: './database/testing/seeds',
+      directory: './src/database/testing/seeds',
     },
     pool: {
       afterCreate: (connection, done) => {
@@ -48,11 +48,11 @@ module.exports = {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     migrations: {
-      directory: './database/dev/migrations',
+      directory: './src/database/dev/migrations',
       tableName: 'knex_migrations',
     },
     seeds: {
-      directory: './database/dev/seeds',
+      directory: './src/database/dev/seeds',
     },
     pool: {
       min: 2,
