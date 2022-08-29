@@ -3,24 +3,17 @@ import asyncHandler from 'express-async-handler'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
+import userService from '../../service/user'
+
 import { secret } from '../../../config/secrets'
 
-// TODO: Import the users model here
-
-// TODO:
 export const registerUser = asyncHandler(
   async (req: Request, res: Response) => {
-    const { username, password } = req.body
-
-    if (!username || !password) {
-      res.status(400).send('Please add all fields')
+    try {
+      userService.createUser(req.body)
+    } catch (error) {
+      res.status(400).send('Check your fields and try again')
     }
-
-    // Check if user exists
-
-    // IF new user add, otherwise fail
-
-    res.status(200).send('Still need to implement adding to the db')
   }
 )
 
