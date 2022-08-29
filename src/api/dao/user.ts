@@ -3,6 +3,7 @@ import DbAccess from '../../config/dbAccessFiles/users-model'
 
 class UserDAO {
   async createUser(username: string, password: string) {
+    console.log('---- Made it to the DAO ----')
     DbAccess.createUser({ username, password })
       .then((data) => {
         if (data) {

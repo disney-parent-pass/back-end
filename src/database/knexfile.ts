@@ -7,14 +7,14 @@ const knexConfig: IKnexConfig = {
     client: 'sqlite3',
     useNullAsDefault: true,
     connection: {
-      filename: './dev/dev.db3',
+      filename: './src/database/dev/dev.db3',
     },
     migrations: {
-      directory: './dev/migrations/',
+      directory: 'dev/migrations/',
       tableName: 'dbmigrations',
     },
     seeds: {
-      directory: './dev/seeds',
+      directory: 'src/database/dev/seeds',
     },
     pool: {
       afterCreate: (connection, done) => {
