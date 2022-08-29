@@ -8,9 +8,8 @@
     "start": "tsc & node .",
     "dev": "tsc -w & nodemon .",
     "make-migrations": "npx knex migrate:make init --migrations-directory ./src/database/dev/migrations",
-    "migrate": "npx knex migrate:latest --knexfile ./src/database/knexfile.js",
-    "test": "cross-env DB_ENV=testing jest --watch",
-    "clean": "rm -rf ./node_modules ./dist/"
+    "migrate": "npx knex migrate:latest",
+    "test": "cross-env DB_ENV=testing jest --watch"
   },
   "repository": {
     "type": "git",
