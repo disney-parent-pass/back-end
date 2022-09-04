@@ -1,24 +1,31 @@
-import cors from 'cors'
-import express, { Application } from 'express'
-import helmet from 'helmet'
+import * as dotenv from "dotenv";
+import cors from "cors";
+import express, { Application } from "express";
+import helmet from "helmet";
 
-import { logger } from './middleware/logger'
-import { router as HelloRouter } from './resources/pulse/pulse'
-import { router as AuthRouter } from './resources/auth/auth_router'
+import { logger } from "./middleware/logger";
+import { router as HelloRouter } from "./resources/pulse/pulse";
+import { router as AuthRouter } from "./resources/auth/auth_router";
+
+const development = "development";
+const isDevelopment = process.env.NODE_ENV === development;
+if (isDevelopment) {
+  dotenv.config();
+}
 
 // A server, to configure
-const server: Application = express()
+const server: Application = express();
 
 // Configuration of a server
-server.use(cors())
-server.use(helmet())
-server.use(express.json())
+server.use(cors());
+server.use(helmet());
+server.use(express.json());
 
 // Middlewares
-server.use(logger)
+server.use(logger);
 
 // Define the routes with appropriate routers
-server.use('/', HelloRouter)
-server.use('/auth', AuthRouter)
+server.use("/", HelloRouter);
+server.use("/auth", AuthRouter);
 
-export default server
+export default server;
