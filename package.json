@@ -6,9 +6,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "start": "tsc & node .",
-    "dev": "tsc -w & nodemon .",
-    "make-migrations": "npx knex migrate:make init --migrations-directory ./src/database/dev/migrations",
-    "migrate": "npx knex migrate:latest",
+    "dev": "cross-env NODE_ENV=development nodemon ./src/index.ts",
+    "make-migrations": "npx knex migrate:make init --migrations-directory ./src/database/migrations",
+    "migrate": "npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
     "test": "cross-env DB_ENV=testing jest --watch"
   },
   "repository": {
@@ -25,6 +25,8 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "helmet": "^5.1.1",
@@ -42,8 +44,6 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.7.13",
     "@types/supertest": "^2.0.12",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.0.1",
     "jest": "^28.1.3",
     "nodemon": "^2.0.19",
     "supertest": "^6.2.4",
