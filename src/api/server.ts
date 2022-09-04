@@ -2,16 +2,16 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import express, { Application } from "express";
 import helmet from "helmet";
-
 import { logger } from "./middleware/logger";
-import { router as HelloRouter } from "./resources/pulse/pulse";
-import { router as AuthRouter } from "./resources/auth/auth_router";
 
 const development = "development";
 const isDevelopment = process.env.NODE_ENV === development;
 if (isDevelopment) {
   dotenv.config();
 }
+
+import { router as HelloRouter } from "./resources/pulse/pulse";
+import { router as AuthRouter } from "./resources/auth/auth_router";
 
 // A server, to configure
 const server: Application = express();
