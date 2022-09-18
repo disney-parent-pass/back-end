@@ -1,89 +1,99 @@
-import UserDAO from '../dao/user'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import { secret } from '../../config/secrets'
+import UserDAO from "../dao/user";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { secret } from "../../config/secrets";
 
-const SERVER_ERROR: number = 500
-const BAD_REQUEST: number = 400
-const CREATED: number = 201
+const BAD_REQUEST: number = 400;
+const MISSING_CREDENTIAL: number = 401;
+const CREATED: number = 201;
+const RESPONSE_OK: number = 200;
 
 interface UserServiceResponse {
-  status: number,
-  message: object | string
+  status: number;
+  message: object | string;
 }
 
-
 class UserService {
+  /**
+   * The User Creation Service Layer
+   * @param userDto : the JSON object representing the credentials for the user
+   * @returns Promise<UserServiceResponse>, which will be the status, message
+   */
   async createUser(userDto: any): Promise<UserServiceResponse> {
     try {
-      const { username, password, roleId } = userDto
+      const { username, password, roleId } = userDto;
       if (!username || !password || !roleId) {
-        throw 'Please enter all fields'
+        throw "Please enter all fields";
       }
 
-      let exists = UserDAO.retrieveUser(username)
+      let exists = UserDAO.retrieveUser(username);
 
-      if(exists) {
+      if (exists) {
         return {
           status: BAD_REQUEST,
-          message: "Account with that username already exists. Please signin"
-        }
+          message: "Account with that username already exists. Please signin",
+        };
       }
 
-      let id = UserDAO.createUser(username, password, roleId)
+      let id = UserDAO.createUser(username, password, roleId);
 
       return {
         message: id,
-        status: 200
-      }
+        status: CREATED,
+      };
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
+  /**
+   * The User Login Service Layer
+   * @param userDto : the JSON object representing the credentials for the user
+   * @returns Promise<UserServiceResponse>, which will be the status, message (which is the user info in this case)
+   */
   async loginUser(userDto: any): Promise<UserServiceResponse> {
     try {
-      const { username, password } = userDto
+      const { username, password } = userDto;
 
       if (!username || !password) {
         return {
-          status: 401,
-          message: 'Missing username or password',
-        }
+          status: MISSING_CREDENTIAL,
+          message: "Missing username or password",
+        };
       }
 
       let user = UserDAO.retrieveUser(username)
         .then((user) => {
-          console.log(password, user.password)
+          console.log(password, user.password);
           if (user && bcrypt.compareSync(password, user.password)) {
-            const jwt = genToken(user)
+            const jwt = genToken(user);
             return {
-              status: 200,
+              status: RESPONSE_OK,
               message: {
                 userId: user.id,
                 username: user.username,
                 token: jwt,
               },
-            }
+            };
           } else {
             return {
-              status: 401,
-              message: 'Failed to provide proper credentials',
-            }
+              status: MISSING_CREDENTIAL,
+              message: "Failed to provide proper credentials",
+            };
           }
         })
         .catch((err) => {
-          console.error(err)
-          throw err
-        })
-      return user
+          console.error(err);
+          throw err;
+        });
+      return user;
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 }
 
-export default new UserService()
+export default new UserService();
 
 /**
  * Helper function to generate the JWT token which is set to expire in
@@ -91,17 +101,18 @@ export default new UserService()
  *
  * @param user: object - The user with respective fields
  *
+ * @returns JWT Payload
  */
- const genToken = (user) => {
-  const { id, username } = user
+const genToken = (user) => {
+  const { id, username } = user;
   const payload = {
     subject: id,
     username: username,
-  }
+  };
 
   const options = {
-    expiresIn: '1d',
-  }
+    expiresIn: "1d",
+  };
 
-  return jwt.sign(payload, secret.jwtSecret, options)
-}
+  return jwt.sign(payload, secret.jwtSecret, options);
+};

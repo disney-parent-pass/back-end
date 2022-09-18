@@ -1,5 +1,5 @@
 interface IKnexConfig {
-  [key: string]: object
+  [key: string]: object;
 }
 
 const knexConfig: IKnexConfig = {
@@ -23,36 +23,36 @@ const knexConfig: IKnexConfig = {
   //   },
   // },
   development: {
-    client: 'pg',
+    client: "pg",
     useNullAsDefault: true,
     connection: process.env.DB_URI,
     migrations: {
       directory: `${__dirname}/migrations`,
-      tableName: 'knex_migrations',
+      tableName: "knex_migrations",
     },
     seeds: {
       directory: `${__dirname}/seeds`,
     },
   },
   testing: {
-    client: 'pg',
+    client: "pg",
     useNullAsDefault: true,
     connection: process.env.DB_URI_TESTING,
     migrations: {
       directory: `${__dirname}/migrations`,
-      tableName: 'knex_migrations',
+      tableName: "knex_migrations",
     },
     seeds: {
       directory: `${__dirname}/seeds`,
     },
   },
   production: {
-    client: 'pg',
+    client: "pg",
     useNullAsDefault: true,
     connection: process.env.DB_URI,
     migrations: {
       directory: `${__dirname}/migrations`,
-      tableName: 'knex_migrations',
+      tableName: "knex_migrations",
     },
     seeds: {
       directory: `${__dirname}/seeds`,
@@ -62,6 +62,6 @@ const knexConfig: IKnexConfig = {
       max: 10,
     },
   },
-}
+};
 
-export default knexConfig
+export default knexConfig;
