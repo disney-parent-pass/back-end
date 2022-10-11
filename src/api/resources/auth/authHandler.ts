@@ -17,7 +17,7 @@ export const registerUser = asyncHandler(
   async (req: Request, res: Response) => {
     try {
       let payload = await userService.createUser(req.body);
-      res.status(payload.status).send(payload.message);
+      res.status(payload.status).send({message: `Created the user`});
     } catch (error) {
       res.status(BAD_REQUEST).send("Caught the error in registerUser: \n" + error);
     }
