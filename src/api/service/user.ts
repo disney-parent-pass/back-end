@@ -3,20 +3,30 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { secret } from "../../config/secrets";
 
+const RESPONSE_OK: number = 200;
+const CREATED: number = 201;
 const BAD_REQUEST: number = 400;
 const MISSING_CREDENTIAL: number = 401;
-const CREATED: number = 201;
-const RESPONSE_OK: number = 200;
 
+// An  interface for the Promise in createUser
 interface UserServiceResponse {
   status: number;
   message: object | string;
 }
 
-interface UserLoginDTO {
+// An interface modeling the JSON for the Registration/Creation endpoint
+interface RegisterUserDTO {
+  username: string;
+  password: string;
+  roleId: number;
+}
+
+// An interface modeling the JSON for the Login endpoint
+interface LoginUserDTO {
   username: string;
   password: string;
 }
+
 
 class UserService {
   /**
@@ -24,7 +34,7 @@ class UserService {
    * @param userDto : the JSON object representing the credentials for the user
    * @returns Promise<UserServiceResponse>, which will be the status, message
    */
-  async createUser(userDto: any): Promise<UserServiceResponse> {
+  async createUser(userDto: RegisterUserDTO): Promise<UserServiceResponse> {
     try {
       const { username, password, roleId } = userDto;
       if (!username || !password || !roleId) {
@@ -32,6 +42,7 @@ class UserService {
       }
 
       let exists = await UserDAO.retrieveUser(username);
+
       if (exists) {
         return {
           status: BAD_REQUEST,
@@ -55,7 +66,7 @@ class UserService {
    * @param userDto : the JSON object representing the credentials for the user
    * @returns Promise<UserServiceResponse>, which will be the status, message (which is the user info in this case)
    */
-  async loginUser(userDto: UserLoginDTO): Promise<UserServiceResponse> {
+  async loginUser(userDto: LoginUserDTO): Promise<UserServiceResponse> {
     try {
       const { username, password } = userDto;
 

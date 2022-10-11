@@ -6,5 +6,5 @@ export let router: Router = Router();
 // Route to sign in and returns a JWT
 router.route("/").post(loginUser);
 
-// Route to signup
+// Route to signup a new user
 router.route("/register").post(registerUser);
