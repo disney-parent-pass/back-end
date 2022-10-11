@@ -10,7 +10,7 @@ In order to have knex migrate and manage the DB correctly locally the following 
 
 ```
 DB_URI=postgresql://postgres:postgres@localhost:5432/disney_parent_dev
-DB_URI_TESTING=postgresql://postgres:postgres@localhost:5432/disney_parent_testing
+DB_URI_TESTING=postgresql://postgres:postgres@localhost:5432/disney_parent_test
 ```
 
 ## Seeding Data

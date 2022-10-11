@@ -37,7 +37,7 @@ const knexConfig: IKnexConfig = {
   testing: {
     client: "pg",
     useNullAsDefault: true,
-    connection: process.env.DB_URI_TESTING,
+    connection: "postgresql://postgres:postgres@localhost:5432/disney_parent_test",
     migrations: {
       directory: `${__dirname}/migrations`,
       tableName: "knex_migrations",

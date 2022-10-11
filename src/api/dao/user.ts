@@ -40,7 +40,7 @@ class UserDAO {
    * @param username : The username to retrieve
    * @returns The first instance of that username, since it should be unique
    */
-  async retrieveUser(username: string) {
+  async retrieveUser(username: string): Promise<any> {
     return await DbAccess.findBy({ username }).first();
   }
 }

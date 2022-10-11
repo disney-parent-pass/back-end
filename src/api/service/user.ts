@@ -13,6 +13,11 @@ interface UserServiceResponse {
   message: object | string;
 }
 
+interface UserLoginDTO {
+  username: string;
+  password: string;
+}
+
 class UserService {
   /**
    * The User Creation Service Layer
@@ -26,8 +31,7 @@ class UserService {
         throw "Please enter all fields";
       }
 
-      let exists = UserDAO.retrieveUser(username);
-
+      let exists = await UserDAO.retrieveUser(username);
       if (exists) {
         return {
           status: BAD_REQUEST,
@@ -51,7 +55,7 @@ class UserService {
    * @param userDto : the JSON object representing the credentials for the user
    * @returns Promise<UserServiceResponse>, which will be the status, message (which is the user info in this case)
    */
-  async loginUser(userDto: any): Promise<UserServiceResponse> {
+  async loginUser(userDto: UserLoginDTO): Promise<UserServiceResponse> {
     try {
       const { username, password } = userDto;
 
@@ -64,8 +68,7 @@ class UserService {
 
       let user = UserDAO.retrieveUser(username)
         .then((user) => {
-          console.log(password, user.password);
-          if (user && bcrypt.compareSync(password, user.password)) {
+          if (user && bcrypt.compareSync(password.toString(), user.password)) {
             const jwt = genToken(user);
             return {
               status: RESPONSE_OK,
@@ -83,11 +86,12 @@ class UserService {
           }
         })
         .catch((err) => {
-          console.error(err);
+          console.log("error: " + err)
           throw err;
         });
       return user;
     } catch (error) {
+      console.log("Login error: " + error)
       throw error;
     }
   }
