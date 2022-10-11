@@ -8,8 +8,9 @@
     "start": "tsc & node .",
     "dev": "cross-env NODE_ENV=development nodemon ./src/index.ts",
     "make-migrations": "npx knex migrate:make init --migrations-directory ./src/database/migrations",
-    "migrate": "npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
+    "migrate": "cross-env NODE_ENV=development npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
     "migratetest": "cross-env DB_ENV=testing npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
+    "seed": "npx knex seed:run --knexfile ./src/database/knexfile.ts",
     "test": "cross-env DB_ENV=testing jest --force-exit",
     "tc": "cross-env DB_ENV=testing jest --coverage --force-exit"
   },

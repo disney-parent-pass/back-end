@@ -50,7 +50,7 @@ class UserService {
         };
       }
 
-      let id = UserDAO.createUser(username, password, roleId);
+      let id = UserDAO.createUser(username, password.toString(), roleId);
 
       return {
         message: id,

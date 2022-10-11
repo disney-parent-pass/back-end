@@ -18,18 +18,18 @@ DB_URI_TESTING=postgresql://postgres:postgres@localhost:5432/disney_parent_test
 1. Setup the DB: `docker compose up --build`
 2. Export: 
 - `export NODE_ENV=development`
-- `DB_URI=postgresql://postgres:postgres@localhost:5432/disney_parent_dev`
+- `export DB_URI=postgresql://postgres:postgres@localhost:5432/disney_parent_dev`
 3. Run migrations: `npm run migrate`
-4. Seed the database: `npx knex seed:run --knexfile ./src/database knexfile.ts`
+4. Seed the database: `npx knex seed:run --knexfile ./src/database/knexfile.ts`
 
 ## Running Unit Tests
 
 1. Setup the DB: `docker compose up --build`
 2. Export: 
 - `export NODE_ENV=testing`
-- `DB_URI_TESTING=postgresql://postgres:postgres@localhost:5432/disney_parent_test`
+- `export DB_URI_TESTING=postgresql://postgres:postgres@localhost:5432/disney_parent_test`
 3. Run migrations: `npm run migratetest`
-4. Seed the database: `npx knex seed:run --knexfile ./src/database knexfile.ts`
+4. Seed the database: `npx knex seed:run --knexfile ./src/database/knexfile.ts`
 
 ## Acknowledgements and Resources
 
