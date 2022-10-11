@@ -2,30 +2,14 @@ interface IKnexConfig {
   [key: string]: object;
 }
 
+
+//console.log(`[Knexfile]: ${process.env.DB_URI}`);
+
 const knexConfig: IKnexConfig = {
-  // development: {
-  //   client: "sqlite3",
-  //   useNullAsDefault: true,
-  //   connection: {
-  //     filename: `${__dirname}/dev.sqlite`,
-  //   },
-  //   migrations: {
-  //     directory: "./dev/migrations/",
-  //     tableName: "dbmigrations",
-  //   },
-  //   seeds: {
-  //     directory: "dev/seeds",
-  //   },
-  //   pool: {
-  //     afterCreate: (connection, done) => {
-  //       connection.run("PRAGMA foreign_keys = ON", done);
-  //     },
-  //   },
-  // },
   development: {
     client: "pg",
     useNullAsDefault: true,
-    connection: process.env.DB_URI,
+    connection: `postgresql://postgres:postgres@localhost:5432/disney_parent_dev`,
     migrations: {
       directory: `${__dirname}/migrations`,
       tableName: "knex_migrations",
@@ -37,7 +21,7 @@ const knexConfig: IKnexConfig = {
   testing: {
     client: "pg",
     useNullAsDefault: true,
-    connection: "postgresql://postgres:postgres@localhost:5432/disney_parent_test",
+    connection: `postgresql://postgres:postgres@localhost:5432/disney_parent_test`,
     migrations: {
       directory: `${__dirname}/migrations`,
       tableName: "knex_migrations",
