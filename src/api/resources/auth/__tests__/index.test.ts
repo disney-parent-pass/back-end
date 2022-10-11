@@ -36,7 +36,7 @@ describe("/auth", () => {
     it("should return status code 400 if missing roleId", async () => {
       const response = await request(server).post("/auth/register").send({
         username: "test-missing",
-        password: 1555
+        password: 1555,
       });
       expect(response.statusCode).toBe(400);
     });
@@ -44,7 +44,6 @@ describe("/auth", () => {
 
   describe("Testing Login", () => {
     it("should return 200 on successful login", async () => {
-
       const response = await request(server).post("/auth/").send({
         username: "tester-oliver",
         password: 1555,

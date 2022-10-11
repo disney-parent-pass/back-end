@@ -27,7 +27,6 @@ interface LoginUserDTO {
   password: string;
 }
 
-
 class UserService {
   /**
    * The User Creation Service Layer
@@ -97,12 +96,12 @@ class UserService {
           }
         })
         .catch((err) => {
-          console.log("error: " + err)
+          console.log("error: " + err);
           throw err;
         });
       return user;
     } catch (error) {
-      console.log("Login error: " + error)
+      console.log("Login error: " + error);
       throw error;
     }
   }

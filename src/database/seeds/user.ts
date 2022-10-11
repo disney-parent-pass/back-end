@@ -6,6 +6,10 @@ export async function seed(knex: Knex): Promise<void> {
 
   // Inserts seed entries
   await knex("users").insert([
-    {username: "tester-oliver", password: "$2a$10$d72bTqzsg7Cv4LQPmTJ4M.fCyrqTALlr8AXDjjkZnRB74UyvbqBgi", role_id: 1}
+    {
+      username: "tester-oliver",
+      password: "$2a$10$d72bTqzsg7Cv4LQPmTJ4M.fCyrqTALlr8AXDjjkZnRB74UyvbqBgi",
+      role_id: 1,
+    },
   ]);
 }

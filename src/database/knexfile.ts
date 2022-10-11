@@ -2,7 +2,6 @@ interface IKnexConfig {
   [key: string]: object;
 }
 
-
 //console.log(`[Knexfile]: ${process.env.DB_URI}`);
 
 const knexConfig: IKnexConfig = {
