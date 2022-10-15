@@ -8,7 +8,7 @@ const knexConfig: IKnexConfig = {
   development: {
     client: "pg",
     useNullAsDefault: true,
-    connection: `postgresql://postgres:postgres@localhost:5432/disney_parent_dev`,
+    connection: `postgresql://postgres:postgres@db:5432/disney_parent_dev`,
     migrations: {
       directory: `${__dirname}/migrations`,
       tableName: "knex_migrations",
