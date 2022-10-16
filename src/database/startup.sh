@@ -3,7 +3,7 @@
 # Get containers role
 role=${ROLE}
 
-# Decide it's next series of tasks
+# Decide its next series of tasks
 if [ "$role" == "server" ]; then
     echo "API Server starting..."
     npm run build
