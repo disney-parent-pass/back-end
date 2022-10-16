@@ -6,9 +6,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "start": "node ./dist/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon ./src/index.ts",
+    "dev": "cross-env NODE_ENV=localdev nodemon ./src/index.ts",
     "make-migrations": "npx knex migrate:make init --migrations-directory ./src/database/migrations",
-    "migrate": "cross-env NODE_ENV=development npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
+    "migrate": "cross-env NODE_ENV=localdev npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
+    "container-migrate": "cross-env NODE_ENV=development npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
     "migratetest": "cross-env DB_ENV=testing npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
     "seed": "npx knex seed:run --knexfile ./src/database/knexfile.ts",
     "test": "cross-env DB_ENV=testing jest --force-exit",

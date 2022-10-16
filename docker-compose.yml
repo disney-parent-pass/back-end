@@ -25,6 +25,7 @@ services:
       - ROLE=bootstrap
       - NODE_ENV=development
       - PORT=3000
+      - DB_ENV=development
     restart: 'no'
     depends_on:
       - db
@@ -38,6 +39,7 @@ services:
       - ROLE=server
       - NODE_ENV=development
       - PORT=3000
+      - DB_ENV=development
     restart: 'no'
     depends_on:
       - db
