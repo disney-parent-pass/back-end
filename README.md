@@ -18,6 +18,7 @@ Note: You could add a volume mounted at the project directory and see changes re
 1. Setup the DB: `docker compose -f compose.dev.yml up --build`
 2. Export:
 
+- `export DB_ENV=localdev`
 - `export NODE_ENV=localdev`
 - `export DB_URI=postgresql://postgres:postgres@localhost:5432/disney_parent_dev`
 
