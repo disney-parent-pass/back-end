@@ -4,6 +4,11 @@
 
 Gain *more* experience building out an API server with *user authentication* using TypeScript and the KnexJS query builder. 
 
+
+## Data Flow Diagram
+
+<img src="./artifacts/backend_dataflow_v2.png" alt="Backend dataflow diagram" width=650 height=550 />
+
 ## Note about Setting Env Vars
 
 In order to have knex migrate and manage the DB correctly locally the following environment variables need to be loaded into the current shell session.
