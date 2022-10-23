@@ -2,39 +2,46 @@
 
 ## Motivation
 
-Gain *more* experience building out an API server with *user authentication* using TypeScript and the KnexJS query builder. 
-
+Gain _more_ experience building out an API server with _user authentication_ using TypeScript and the KnexJS query builder.
 
 ## Data Flow Diagram
 
 <img src="./artifacts/backend_dataflow_v2.png" alt="Backend dataflow diagram" width=650 height=550 />
 
-## Note about Setting Env Vars
+## Local Development ( w/ server containerized)
 
-In order to have knex migrate and manage the DB correctly locally the following environment variables need to be loaded into the current shell session.
+Note: You could add a volume mounted at the project directory and see changes real time.
 
-```
-DB_URI=postgresql://postgres:postgres@localhost:5432/disney_parent_dev
-DB_URI_TESTING=postgresql://postgres:postgres@localhost:5432/disney_parent_test
-```
+1. Start the deployment: `docker compose up --build`
 
-## Running the API 
 
-1. Setup the DB: `docker compose up --build`
-2. Export: 
-- `export NODE_ENV=development`
+## Local Development (w/ out server containerized)
+
+### Running the API
+
+1. Setup the DB: `docker compose -f compose.dev.yml up --build`
+2. Export:
+
+- `export DB_ENV=localdev`
+- `export NODE_ENV=localdev`
 - `export DB_URI=postgresql://postgres:postgres@localhost:5432/disney_parent_dev`
+
 3. Run migrations: `npm run migrate`
-4. Seed the database: `npx knex seed:run --knexfile ./src/database/knexfile.ts`
+4. Seed the database: `npm run seed`
 
-## Running Unit Tests
 
-1. Setup the DB: `docker compose up --build`
-2. Export: 
+### Running Unit Tests
+
+1. Setup the DB: `docker compose -f compose.dev.yml up --build`
+2. Export:
+
+- `export DB_ENV=testing`
 - `export NODE_ENV=testing`
 - `export DB_URI_TESTING=postgresql://postgres:postgres@localhost:5432/disney_parent_test`
+
 3. Run migrations: `npm run migratetest`
-4. Seed the database: `npx knex seed:run --knexfile ./src/database/knexfile.ts`
+4. Seed the database: `npm run seed`
+
 
 ## Acknowledgements and Resources
 
