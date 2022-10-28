@@ -2,12 +2,18 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "tsc & node .",
-    "dev": "tsc -w & nodemon .",
-    "test": "cross-env DB_ENV=testing jest --watch"
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node ./dist/index.js",
+    "dev": "nodemon ./src/index.ts",
+    "make-migrations": "npx knex migrate:make init --migrations-directory ./src/database/migrations",
+    "migrate": "cross-env NODE_ENV=localdev npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
+    "container-migrate": "cross-env NODE_ENV=development npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
+    "migratetest": "cross-env DB_ENV=testing npx knex migrate:latest --knexfile ./src/database/knexfile.ts",
+    "seed": "npx knex seed:run --knexfile ./src/database/knexfile.ts",
+    "test": "cross-env DB_ENV=testing jest --force-exit",
+    "tc": "cross-env DB_ENV=testing jest --coverage --force-exit"
   },
   "repository": {
     "type": "git",
@@ -23,6 +29,8 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "helmet": "^5.1.1",
@@ -36,13 +44,14 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@types/jest": "^28.1.8",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.7.13",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.0.1",
+    "@types/supertest": "^2.0.12",
     "jest": "^28.1.3",
     "nodemon": "^2.0.19",
     "supertest": "^6.2.4",
+    "ts-jest": "^28.0.8",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   }

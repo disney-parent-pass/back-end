@@ -1,7 +1,8 @@
-import { Request, Response, Router } from 'express'
+import { Request, Response, Router } from "express";
 
-export let router: Router = Router()
+export let router: Router = Router();
 
-router.route('/').get((_req: Request, res: Response) => {
-  res.status(200).send('Hello World!')
-})
+// A simple endpoint to allow quick "Heart beat" tests
+router.route("/").get((_req: Request, res: Response) => {
+  res.status(200).send("Hello World!");
+});

@@ -1,0 +1,2 @@
+CREATE DATABASE disney_parent_dev;
+CREATE DATABASE disney_parent_test;
