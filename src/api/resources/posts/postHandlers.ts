@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { getPostDto, getUnixTime } from "./posts.utils";
 import { Post, PostDto } from "./types";
-const MOCK_POSTS: Array<Post> = [
+let MOCK_POSTS: Array<Post> = [
   {
     id: 1,
     userId: 1,
@@ -46,4 +46,47 @@ export function getPostById(req: Request, res: Response) {
   }
 
   return res.status(200).json({ post: getPostDto(foundPost) });
+}
+
+export function deletePostById(req: Request, res: Response) {
+  const postId = +req.params.postId;
+  const postToDelete = MOCK_POSTS.find((post) => post.id === postId);
+
+  if (!postToDelete) {
+    return res
+      .status(404)
+      .send({ message: `Post with ID of ${postId} not found` });
+  }
+
+  MOCK_POSTS = MOCK_POSTS.filter((post) => post.id !== postId);
+
+  return res.status(200).json({ deletedPost: postToDelete });
+}
+
+export function updatePostById(req: Request, res: Response) {
+  const postId = +req.params.postId;
+  const postChanges = req.body;
+
+  const postToUpdate = MOCK_POSTS.find((post) => post.id === postId);
+
+  if (!postToUpdate) {
+    return res
+      .status(404)
+      .json({ message: `Unable to find post with ID of ${postId}` });
+  }
+
+  MOCK_POSTS = MOCK_POSTS.map((post: Post) => {
+    if (post.id === postId) {
+      return {
+        ...post,
+        ...postChanges,
+      };
+    }
+
+    return post;
+  });
+
+  const updatedPost = MOCK_POSTS.find((post) => post.id === postId);
+
+  return res.status(200).json({ post: updatedPost });
 }
