@@ -24,7 +24,7 @@ const MOCK_POSTS: Array<Post> = [
   },
 ];
 
-export function getAllPosts(req: Request, res: Response) {
+export function getAllPosts(_: Request, res: Response) {
   // TODO: pull out all posts from the DB and map them to
   // external post object
   const posts = MOCK_POSTS.map((post) => {
@@ -32,4 +32,18 @@ export function getAllPosts(req: Request, res: Response) {
   }) as PostDto[];
 
   return res.status(200).json(posts);
+}
+
+export function getPostById(req: Request, res: Response) {
+  // TODO: pull unique post from the DB and map to DTO
+  const postId = +req.params.postId;
+  const foundPost = MOCK_POSTS.find((post) => post.id === postId);
+
+  if (!foundPost) {
+    return res
+      .status(404)
+      .json({ message: `Post with ID of ${postId} not found` });
+  }
+
+  return res.status(200).json({ post: getPostDto(foundPost) });
 }
