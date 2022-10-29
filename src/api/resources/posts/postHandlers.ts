@@ -48,6 +48,20 @@ export function getPostById(req: Request, res: Response) {
   return res.status(200).json({ post: getPostDto(foundPost) });
 }
 
+export function getPostsByUserId(req: Request, res: Response) {
+  const userId = req.body.userId;
+
+  const userPosts = MOCK_POSTS.filter((post) => post.userId === userId);
+
+  if (userPosts.length === 0) {
+    return res
+      .status(404)
+      .json({ message: "Unable to find records for the provided user ID" });
+  }
+
+  return res.status(200).json({ posts: userPosts });
+}
+
 export function deletePostById(req: Request, res: Response) {
   const postId = +req.params.postId;
   const postToDelete = MOCK_POSTS.find((post) => post.id === postId);
