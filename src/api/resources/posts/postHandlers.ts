@@ -49,7 +49,7 @@ export function getPostById(req: Request, res: Response) {
 }
 
 export function getPostsByUserId(req: Request, res: Response) {
-  const userId = req.body.userId;
+  const userId = +req.params.userId;
 
   const userPosts = MOCK_POSTS.filter((post) => post.userId === userId);
 
