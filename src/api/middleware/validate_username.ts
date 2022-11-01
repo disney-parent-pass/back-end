@@ -1,45 +1,30 @@
 import { Request, Response, NextFunction } from "express";
 import expressAsyncHandler from "express-async-handler";
-import user from "../dao/user";
 
-const USERNAME_TAKEN: number = 409;
-const MISSING_CREDENTIAL: number = 401;
+import user from "../dao/user";
+import StatusCodes from "../status_codes";
 
 export const validate_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const username = req.body.username;
 
     if (!username) {
-      res.status(MISSING_CREDENTIAL).send({
-        status: MISSING_CREDENTIAL,
+      res.status(StatusCodes.MISSING_CREDENTIAL).send({
+        status: StatusCodes.MISSING_CREDENTIAL,
         message: "Missing username",
       });
-    }
-
-    if (!req.body.password) {
-      res
-        .status(MISSING_CREDENTIAL)
-        .send({ status: MISSING_CREDENTIAL, message: "Missing password" });
-    }
-
-    if (!req.body.roleId) {
-      res
-        .status(MISSING_CREDENTIAL)
-        .send({ status: MISSING_CREDENTIAL, message: "Missing roleId" });
+      return;
     }
 
     let name_candidate = req.body.username;
-    await user.retrieveUser(name_candidate).then((r) => {
-      console.log(`The result is: ${r}`);
-
-      if (r != undefined) {
+    await user.retrieveUser(name_candidate).then((u) => {
+      if (u != undefined) {
         res
-          .status(USERNAME_TAKEN)
+          .status(StatusCodes.USERNAME_TAKEN)
           .send({ message: "Sorry, a user with this username already exists" });
         return;
       }
+      next();
     });
-
-    next();
   }
 );
