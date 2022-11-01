@@ -14,18 +14,21 @@ export const validate_username = expressAsyncHandler(
         status: MISSING_CREDENTIAL,
         message: "Missing username",
       });
+      return
     }
 
     if (!req.body.password) {
       res
         .status(MISSING_CREDENTIAL)
         .send({ status: MISSING_CREDENTIAL, message: "Missing password" });
+      return
     }
 
     if (!req.body.roleId) {
       res
         .status(MISSING_CREDENTIAL)
         .send({ status: MISSING_CREDENTIAL, message: "Missing roleId" });
+      return
     }
 
     let name_candidate = req.body.username;
@@ -38,8 +41,7 @@ export const validate_username = expressAsyncHandler(
           .send({ message: "Sorry, a user with this username already exists" });
         return;
       }
+      next();
     });
-
-    next();
   }
 );
