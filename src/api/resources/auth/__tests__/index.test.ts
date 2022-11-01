@@ -19,26 +19,34 @@ describe("/auth", () => {
       });
       expect(response.statusCode).toBe(201);
     });
-    it("should return status code 400 if missing username", async () => {
+    it("should return status code 401 if missing username", async () => {
       const response = await request(server).post("/auth/register").send({
         password: 1555,
         roleId: 1,
       });
-      expect(response.statusCode).toBe(400);
+      expect(response.statusCode).toBe(401);
     });
-    it("should return status code 400 if missing password", async () => {
+    it("should return status code 401 if missing password", async () => {
       const response = await request(server).post("/auth/register").send({
         username: "test-missing",
         roleId: 1,
       });
-      expect(response.statusCode).toBe(400);
+      expect(response.statusCode).toBe(401);
     });
-    it("should return status code 400 if missing roleId", async () => {
+    it("should return status code 401 if missing roleId", async () => {
       const response = await request(server).post("/auth/register").send({
         username: "test-missing",
         password: 1555,
       });
-      expect(response.statusCode).toBe(400);
+      expect(response.statusCode).toBe(401);
+    });
+    it("should return status code 409 if username exists", async () => {
+      const response = await request(server).post("/auth/register").send({
+        username: "tester-oliver",
+        password: 1555,
+        roleId: 1,
+      });
+      expect(response.statusCode).toBe(409);
     });
   });
 
