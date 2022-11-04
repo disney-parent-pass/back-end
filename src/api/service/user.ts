@@ -88,7 +88,7 @@ class UserService {
           } else {
             return {
               status: StatusCodes.UNAUTHORIZED,
-              message: "Failed to provide proper credentials",
+              message: "Unable to locate account, check credentials and try again.",
             };
           }
         })
