@@ -7,7 +7,7 @@ const MISSING_CREDENTIAL: number = 401;
 
 export const validate_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    
+
     if (!req.body.username) {
       res.status(MISSING_CREDENTIAL).send({
         status: MISSING_CREDENTIAL,
@@ -31,10 +31,9 @@ export const validate_username = expressAsyncHandler(
     }
 
     let name_candidate = req.body.username;
-    await user.retrieveUser(name_candidate).then((r) => {
-      console.log(`The result is: ${r}`);
+    await user.retrieveUser(name_candidate).then((exists) => {
 
-      if (r != undefined) {
+      if (exists != undefined) {
         res
           .status(USERNAME_TAKEN)
           .send({ message: "Sorry, a user with this username already exists" });
