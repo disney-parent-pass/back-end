@@ -12,7 +12,8 @@ import StatusCodes from "../status_codes";
  */
 export const verify_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.body.username) {
+    const username = req.body.username
+    if (!username) {
       res.status(StatusCodes.MISSING_CREDENTIAL).send({
         status: StatusCodes.MISSING_CREDENTIAL,
         message: "Missing username",
@@ -29,7 +30,8 @@ export const verify_username = expressAsyncHandler(
  */
 export const verify_password = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.body.password) {
+    const password = req.body.password
+    if (!password) {
       res.status(StatusCodes.MISSING_CREDENTIAL).send({
         status: StatusCodes.MISSING_CREDENTIAL,
         message: "Missing password",
@@ -46,7 +48,8 @@ export const verify_password = expressAsyncHandler(
  */
 export const verify_role_id = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    if (!req.body.roleId) {
+    const roleId = req.body.roleId
+    if (!roleId) {
       res.status(StatusCodes.MISSING_CREDENTIAL).send({
         status: StatusCodes.MISSING_CREDENTIAL,
         message: "Missing roleId",
