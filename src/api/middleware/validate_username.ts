@@ -6,9 +6,7 @@ import StatusCodes from "../status_codes";
 
 export const validate_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const username = req.body.username;
-
-    if (!username) {
+    if (!req.body.username) {
       res.status(StatusCodes.MISSING_CREDENTIAL).send({
         status: StatusCodes.MISSING_CREDENTIAL,
         message: "Missing username",
@@ -17,8 +15,11 @@ export const validate_username = expressAsyncHandler(
     }
 
     let name_candidate = req.body.username;
-    await user.retrieveUser(name_candidate).then((u) => {
-      if (u != undefined) {
+
+    await user.retrieveUser(name_candidate).then((exists) => {
+      const userExists = exists != undefined;
+
+      if (userExists) {
         res
           .status(StatusCodes.USERNAME_TAKEN)
           .send({ message: "Sorry, a user with this username already exists" });
