@@ -7,9 +7,8 @@ const MISSING_CREDENTIAL: number = 401;
 
 export const validate_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const username = req.body.username;
-
-    if (!username) {
+    
+    if (!req.body.username) {
       res.status(MISSING_CREDENTIAL).send({
         status: MISSING_CREDENTIAL,
         message: "Missing username",
