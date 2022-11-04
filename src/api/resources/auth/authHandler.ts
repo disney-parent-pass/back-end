@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
-import StatusCodes from "../../status_codes";
+import StatusCodes from "../../utils/status_codes";
 import userService from "../../service/user";
 
 /**

@@ -1,7 +1,7 @@
 import server from "../../../server";
 import request from "supertest";
 
-import StatusCodes from "../../../status_codes"
+import StatusCodes from "../../../utils/status_codes"
 
 describe("Testing the Pulse Endpoint /", () => {
   it('should return status code 200 with message "Hello World"', async () => {

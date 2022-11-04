@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { getPostDto, getUnixTime } from "./posts.utils";
 import { Post, PostDto } from "./types";
 
-import StatusCodes from "../../status_codes";
+import StatusCodes from "../../utils/status_codes";
 
 let MOCK_POSTS: Array<Post> = [
   {

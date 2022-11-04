@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { secret } from "../../config/secrets";
 
-import StatusCodes from "../status_codes";
+import StatusCodes from "../utils/status_codes";
 
 // An  interface for the Promise in createUser
 interface UserServiceResponse {

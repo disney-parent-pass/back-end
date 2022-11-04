@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import expressAsyncHandler from "express-async-handler";
 
 import user from "../dao/user";
-import StatusCodes from "../status_codes";
+import StatusCodes from "../utils/status_codes";
 
 /**
  * Middleware to validate that a provided username 

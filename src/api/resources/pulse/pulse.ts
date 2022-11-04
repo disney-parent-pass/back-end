@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import StatusCodes from "../../status_codes";
+import StatusCodes from "../../utils/status_codes";
 
 export let router: Router = Router();
 

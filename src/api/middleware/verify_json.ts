@@ -5,7 +5,7 @@
  */
 import { Request, Response, NextFunction } from "express";
 import expressAsyncHandler from "express-async-handler";
-import StatusCodes from "../status_codes";
+import StatusCodes from "../utils/status_codes";
 
 /**
  * Verifies the JSON payload has a username field
