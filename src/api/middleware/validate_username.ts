@@ -33,7 +33,9 @@ export const validate_username = expressAsyncHandler(
     let name_candidate = req.body.username;
     await user.retrieveUser(name_candidate).then((exists) => {
 
-      if (exists != undefined) {
+      const userExists = exists != undefined
+
+      if (userExists) {
         res
           .status(USERNAME_TAKEN)
           .send({ message: "Sorry, a user with this username already exists" });
