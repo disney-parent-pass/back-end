@@ -4,14 +4,24 @@ import expressAsyncHandler from "express-async-handler";
 import user from "../dao/user";
 import StatusCodes from "../status_codes";
 
+/**
+ * Middleware to validate that a provided username 
+ * does not already exist in the database
+ * 
+ * @param req : The JSON payload for the register endpoint
+ * 
+ * @param res : a response object should an error occur 
+ * 
+ * @param next : the next function to call on the route
+ */
 export const validate_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
 
     const username = req.body.username;
 
     if (!username) {
-      res.status(StatusCodes.MISSING_CREDENTIAL).send({
-        status: StatusCodes.MISSING_CREDENTIAL,
+      res.status(StatusCodes.UNAUTHORIZED).send({
+        status: StatusCodes.UNAUTHORIZED,
         message: "Missing username",
       });
       return;

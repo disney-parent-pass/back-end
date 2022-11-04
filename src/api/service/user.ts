@@ -3,10 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { secret } from "../../config/secrets";
 
-const RESPONSE_OK: number = 200;
-const CREATED: number = 201;
-const BAD_REQUEST: number = 400;
-const MISSING_CREDENTIAL: number = 401;
+import StatusCodes from "../status_codes";
 
 // An  interface for the Promise in createUser
 interface UserServiceResponse {
@@ -44,7 +41,7 @@ class UserService {
 
       if (exists) {
         return {
-          status: BAD_REQUEST,
+          status: StatusCodes.BAD_REQUEST,
           message: "Account with that username already exists. Please signin",
         };
       }
@@ -53,7 +50,7 @@ class UserService {
 
       return {
         message: id,
-        status: CREATED,
+        status: StatusCodes.CREATED,
       };
     } catch (error) {
       throw error;
@@ -71,7 +68,7 @@ class UserService {
 
       if (!username || !password) {
         return {
-          status: MISSING_CREDENTIAL,
+          status: StatusCodes.UNAUTHORIZED,
           message: "Missing username or password",
         };
       }
@@ -81,7 +78,7 @@ class UserService {
           if (user && bcrypt.compareSync(password.toString(), user.password)) {
             const jwt = genToken(user);
             return {
-              status: RESPONSE_OK,
+              status: StatusCodes.OK,
               message: {
                 userId: user.id,
                 username: user.username,
@@ -90,7 +87,7 @@ class UserService {
             };
           } else {
             return {
-              status: MISSING_CREDENTIAL,
+              status: StatusCodes.UNAUTHORIZED,
               message: "Failed to provide proper credentials",
             };
           }
@@ -101,7 +98,6 @@ class UserService {
         });
       return user;
     } catch (error) {
-      console.log("Login error: " + error);
       throw error;
     }
   }

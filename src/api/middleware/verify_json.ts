@@ -14,8 +14,8 @@ export const verify_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const username = req.body.username
     if (!username) {
-      res.status(StatusCodes.MISSING_CREDENTIAL).send({
-        status: StatusCodes.MISSING_CREDENTIAL,
+      res.status(StatusCodes.UNAUTHORIZED).send({
+        status: StatusCodes.UNAUTHORIZED,
         message: "Missing username",
       });
       return;
@@ -32,8 +32,8 @@ export const verify_password = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const password = req.body.password
     if (!password) {
-      res.status(StatusCodes.MISSING_CREDENTIAL).send({
-        status: StatusCodes.MISSING_CREDENTIAL,
+      res.status(StatusCodes.UNAUTHORIZED).send({
+        status: StatusCodes.UNAUTHORIZED,
         message: "Missing password",
       });
       return;
@@ -50,8 +50,8 @@ export const verify_role_id = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const roleId = req.body.roleId
     if (!roleId) {
-      res.status(StatusCodes.MISSING_CREDENTIAL).send({
-        status: StatusCodes.MISSING_CREDENTIAL,
+      res.status(StatusCodes.UNAUTHORIZED).send({
+        status: StatusCodes.UNAUTHORIZED,
         message: "Missing roleId",
       });
       return;
