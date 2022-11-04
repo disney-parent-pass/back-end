@@ -7,33 +7,32 @@ const MISSING_CREDENTIAL: number = 401;
 
 export const validate_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-
     if (!req.body.username) {
       res.status(MISSING_CREDENTIAL).send({
         status: MISSING_CREDENTIAL,
         message: "Missing username",
       });
-      return
+      return;
     }
 
     if (!req.body.password) {
       res
         .status(MISSING_CREDENTIAL)
         .send({ status: MISSING_CREDENTIAL, message: "Missing password" });
-      return
+      return;
     }
 
     if (!req.body.roleId) {
       res
         .status(MISSING_CREDENTIAL)
         .send({ status: MISSING_CREDENTIAL, message: "Missing roleId" });
-      return
+      return;
     }
 
     let name_candidate = req.body.username;
-    await user.retrieveUser(name_candidate).then((exists) => {
 
-      const userExists = exists != undefined
+    await user.retrieveUser(name_candidate).then((exists) => {
+      const userExists = exists != undefined;
 
       if (userExists) {
         res

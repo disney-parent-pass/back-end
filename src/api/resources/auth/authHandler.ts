@@ -37,9 +37,9 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
   try {
     let payload = await userService.loginUser(req.body);
     res.status(payload.status).send(payload.message);
-    return
+    return;
   } catch (error) {
     res.status(SERVER_ERROR).send(error);
-    return
+    return;
   }
 });
