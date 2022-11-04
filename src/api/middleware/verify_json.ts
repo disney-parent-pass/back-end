@@ -12,9 +12,7 @@ import StatusCodes from "../status_codes";
  */
 export const verify_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const username = req.body.username;
-
-    if (!username) {
+    if (!req.body.username) {
       res.status(StatusCodes.MISSING_CREDENTIAL).send({
         status: StatusCodes.MISSING_CREDENTIAL,
         message: "Missing username",
