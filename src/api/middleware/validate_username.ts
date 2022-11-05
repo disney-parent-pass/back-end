@@ -1,34 +1,29 @@
 import { Request, Response, NextFunction } from "express";
 import expressAsyncHandler from "express-async-handler";
+
 import user from "../dao/user";
+import StatusCodes from "../utils/status_codes";
 
-const USERNAME_TAKEN: number = 409;
-const MISSING_CREDENTIAL: number = 401;
-
+/**
+ * Middleware to validate that a provided username 
+ * does not already exist in the database
+ * 
+ * @param req : The JSON payload for the register endpoint
+ * 
+ * @param res : a response object should an error occur 
+ * 
+ * @param next : the next function to call on the route
+ */
 export const validate_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
 
     const username = req.body.username;
 
     if (!username) {
-      res.status(MISSING_CREDENTIAL).send({
-        status: MISSING_CREDENTIAL,
+      res.status(StatusCodes.UNAUTHORIZED).send({
+        status: StatusCodes.UNAUTHORIZED,
         message: "Missing username",
       });
-      return;
-    }
-
-    if (!req.body.password) {
-      res
-        .status(MISSING_CREDENTIAL)
-        .send({ status: MISSING_CREDENTIAL, message: "Missing password" });
-      return;
-    }
-
-    if (!req.body.roleId) {
-      res
-        .status(MISSING_CREDENTIAL)
-        .send({ status: MISSING_CREDENTIAL, message: "Missing roleId" });
       return;
     }
 
@@ -37,7 +32,7 @@ export const validate_username = expressAsyncHandler(
 
       if (userExists) {
         res
-          .status(USERNAME_TAKEN)
+          .status(StatusCodes.USERNAME_TAKEN)
           .send({ message: "Sorry, a user with this username already exists" });
         return;
       }

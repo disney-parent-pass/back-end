@@ -14,7 +14,6 @@ Note: You could add a volume mounted at the project directory and see changes re
 
 1. Start the deployment: `docker compose up --build`
 
-
 ## Local Development (w/ out server containerized)
 
 ### Running the API
@@ -29,7 +28,6 @@ Note: You could add a volume mounted at the project directory and see changes re
 3. Run migrations: `npm run migrate`
 4. Seed the database: `npm run seed`
 
-
 ### Running Unit Tests
 
 1. Setup the DB: `docker compose -f compose.dev.yml up --build`
@@ -41,7 +39,6 @@ Note: You could add a volume mounted at the project directory and see changes re
 
 3. Run migrations: `npm run migratetest`
 4. Seed the database: `npm run seed`
-
 
 ## Acknowledgements and Resources
 

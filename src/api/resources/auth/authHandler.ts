@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
+import StatusCodes from "../../utils/status_codes";
 import userService from "../../service/user";
-
-const BAD_REQUEST: number = 400;
-const SERVER_ERROR: number = 500;
 
 /**
  * The function representing the 'registration' endpoint.
@@ -17,10 +15,12 @@ export const registerUser = asyncHandler(
     try {
       let payload = await userService.createUser(req.body);
       res.status(payload.status).send({ message: `Created the user` });
+      return;
     } catch (error) {
       res
-        .status(BAD_REQUEST)
+        .status(StatusCodes.BAD_REQUEST)
         .send("Caught the error in registerUser: \n" + error);
+      return;
     }
   }
 );
@@ -39,7 +39,7 @@ export const loginUser = asyncHandler(async (req: Request, res: Response) => {
     res.status(payload.status).send(payload.message);
     return;
   } catch (error) {
-    res.status(SERVER_ERROR).send(error);
+    res.status(StatusCodes.SERVER_ERROR).send(error);
     return;
   }
 });
