@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { getPostDto, getUnixTime } from "./posts.utils";
 import { Post, PostDto } from "./types";
+import PostDao from "./models";
+
 let MOCK_POSTS: Array<Post> = [
   {
     id: 1,
@@ -31,7 +33,11 @@ export function getAllPosts(_: Request, res: Response) {
     return getPostDto(post);
   }) as PostDto[];
 
-  return res.status(200).json(posts);
+  PostDao.getAllPosts()
+    .then((posts) => {
+      return res.status(200).json({ posts });
+    })
+    .catch((err) => console.log("Erro retrieving posts\n:", err));
 }
 
 export function getPostById(req: Request, res: Response) {
