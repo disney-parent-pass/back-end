@@ -12,7 +12,7 @@ import StatusCodes from "../utils/status_codes";
  */
 export const verify_username = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const username = req.body.username
+    const username = req.body.username;
     if (!username) {
       res.status(StatusCodes.UNAUTHORIZED).send({
         status: StatusCodes.UNAUTHORIZED,
@@ -30,7 +30,7 @@ export const verify_username = expressAsyncHandler(
  */
 export const verify_password = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const password = req.body.password
+    const password = req.body.password;
     if (!password) {
       res.status(StatusCodes.UNAUTHORIZED).send({
         status: StatusCodes.UNAUTHORIZED,
@@ -48,7 +48,7 @@ export const verify_password = expressAsyncHandler(
  */
 export const verify_role_id = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
-    const roleId = req.body.roleId
+    const roleId = req.body.roleId;
     if (!roleId) {
       res.status(StatusCodes.UNAUTHORIZED).send({
         status: StatusCodes.UNAUTHORIZED,
