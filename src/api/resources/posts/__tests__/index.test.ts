@@ -29,7 +29,7 @@ describe("/api/posts", () => {
 
     it("should featch all posts in the DB", async () => {
       const response = await request(server).get("/api/posts");
-      expect(response.body.posts.length).toBe(1);
+      expect(response.body.posts.length > 0).toBe(true);
     });
   });
 });

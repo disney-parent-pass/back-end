@@ -11,7 +11,7 @@ class DbAccess {
     return id;
   }
 
-  public findBy(filter) {
+  public findBy(filter: any) {
     return db("users").where(filter);
   }
 
