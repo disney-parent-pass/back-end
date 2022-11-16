@@ -1,8 +1,6 @@
 import DbAccess from "../../config/dbAccessFiles/users-model";
 import bcrypt from "bcryptjs";
-
-const CREATED: number = 201;
-const SERVER_ERROR: number = 500;
+import StatusCodes from "../utils/status_codes";
 
 class UserDAO {
   /**
@@ -21,7 +19,7 @@ class UserDAO {
       .then((data) => {
         if (data) {
           return {
-            status: CREATED,
+            status: StatusCodes.CREATED,
             user: { username: data.username, userId: data.userId },
           };
         }
@@ -29,7 +27,7 @@ class UserDAO {
       .catch((err) => {
         console.error(err);
         return {
-          status: SERVER_ERROR,
+          status: StatusCodes.SERVER_ERROR,
           message: "Database unable to create the user",
         };
       });

@@ -3,6 +3,8 @@ import { getPostDto, getUnixTime } from "./posts.utils";
 import { Post, PostDto } from "./types";
 import PostDao from "./models";
 
+import StatusCodes from "../../utils/status_codes";
+
 let MOCK_POSTS: Array<Post> = [
   {
     id: 1,
@@ -35,7 +37,7 @@ export function getAllPosts(_: Request, res: Response) {
 
   PostDao.getAllPosts()
     .then((posts) => {
-      return res.status(200).json({ posts });
+      return res.status(StatusCodes.OK).json({ posts });
     })
     .catch((err) => console.log("Erro retrieving posts\n:", err));
 }
@@ -47,11 +49,11 @@ export function getPostById(req: Request, res: Response) {
 
   if (!foundPost) {
     return res
-      .status(404)
+      .status(StatusCodes.NOT_FOUND)
       .json({ message: `Post with ID of ${postId} not found` });
   }
 
-  return res.status(200).json({ post: getPostDto(foundPost) });
+  return res.status(StatusCodes.OK).json({ post: getPostDto(foundPost) });
 }
 
 export function getPostsByUserId(req: Request, res: Response) {
@@ -61,11 +63,11 @@ export function getPostsByUserId(req: Request, res: Response) {
 
   if (userPosts.length === 0) {
     return res
-      .status(404)
+      .status(StatusCodes.NOT_FOUND)
       .json({ message: "Unable to find records for the provided user ID" });
   }
 
-  return res.status(200).json({ posts: userPosts });
+  return res.status(StatusCodes.OK).json({ posts: userPosts });
 }
 
 export function deletePostById(req: Request, res: Response) {
@@ -74,13 +76,13 @@ export function deletePostById(req: Request, res: Response) {
 
   if (!postToDelete) {
     return res
-      .status(404)
+      .status(StatusCodes.NOT_FOUND)
       .send({ message: `Post with ID of ${postId} not found` });
   }
 
   MOCK_POSTS = MOCK_POSTS.filter((post) => post.id !== postId);
 
-  return res.status(200).json({ deletedPost: postToDelete });
+  return res.status(StatusCodes.OK).json({ deletedPost: postToDelete });
 }
 
 export function updatePostById(req: Request, res: Response) {
@@ -91,7 +93,7 @@ export function updatePostById(req: Request, res: Response) {
 
   if (!postToUpdate) {
     return res
-      .status(404)
+      .status(StatusCodes.NOT_FOUND)
       .json({ message: `Unable to find post with ID of ${postId}` });
   }
 
@@ -108,5 +110,5 @@ export function updatePostById(req: Request, res: Response) {
 
   const updatedPost = MOCK_POSTS.find((post) => post.id === postId);
 
-  return res.status(200).json({ post: updatedPost });
+  return res.status(StatusCodes.OK).json({ post: updatedPost });
 }
