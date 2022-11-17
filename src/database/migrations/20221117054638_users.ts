@@ -1,8 +1,6 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.up = function (knex) {
+import { Knex } from "knex";
+
+export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable("users", (Users) => {
     Users.increments().primary();
     Users.string("username", 255).notNullable().unique();
@@ -10,12 +8,8 @@ exports.up = function (knex) {
     Users.integer("role_id").notNullable();
     Users.foreign("role_id").references("id").inTable("roles");
   });
-};
+}
 
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.down = function (knex) {
+export async function down(knex: Knex): Promise<void> {
   return knex.schema.dropTableIfExists("users");
-};
+}

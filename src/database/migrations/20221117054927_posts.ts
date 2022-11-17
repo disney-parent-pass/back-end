@@ -1,8 +1,6 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.up = function (knex) {
+import { Knex } from "knex";
+
+export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable("posts", (posts) => {
     posts.increments().primary();
     posts.boolean("is_open").notNullable();
@@ -19,12 +17,8 @@ exports.up = function (knex) {
     posts.foreign("park_area_id").references("park_area.id");
     posts.foreign("area_ride_id").references("area_rides.id");
   });
-};
+}
 
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.down = function (knex) {
+export async function down(knex: Knex): Promise<void> {
   return knex.schema.dropTableIfExists("posts");
-};
+}
