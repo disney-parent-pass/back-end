@@ -39,7 +39,7 @@ export function getAllPosts(_: Request, res: Response) {
     .then((posts) => {
       return res.status(StatusCodes.OK).json({ posts });
     })
-    .catch((err) => console.log("Erro retrieving posts\n:", err));
+    .catch((err) => console.log("Error retrieving posts\n:", err));
 }
 
 export function getPostById(req: Request, res: Response) {
