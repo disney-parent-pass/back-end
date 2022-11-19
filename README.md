@@ -4,6 +4,13 @@
 
 Gain _more_ experience building out an API server with _user authentication_ using TypeScript and the KnexJS query builder.
 
+## Project tooling:
+
+- [KnexJS Docs](https://knexjs.org/)
+- [Bash Build System](https://github.com/labaneilers/bs)
+- Docker / Docker compose
+- NPM scripts
+
 ## Data Flow Diagram
 
 <img src="./artifacts/backend_dataflow_v2.png" alt="Backend dataflow diagram" width=650 height=550 />
