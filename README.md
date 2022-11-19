@@ -6,7 +6,7 @@ Gain _more_ experience building out an API server with _user authentication_ usi
 
 ## Project tooling:
 
-- [KnexJS Docs](https://knexjs.org/)
+- [KnexJS](https://knexjs.org/)
 - [Bash Build System](https://github.com/labaneilers/bs)
 - Docker / Docker compose
 - NPM scripts
