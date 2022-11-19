@@ -113,7 +113,7 @@ export default new UserService();
  *
  * @returns JWT Payload
  */
-const genToken = (user) => {
+const genToken = (user: any) => {
   const { id, username } = user;
   const payload = {
     subject: id,
