@@ -36,7 +36,7 @@ export const protect = expressAsyncHandler(
       } catch (error) {
         res
           .status(StatusCodes.UNAUTHORIZED)
-          .send({ message: "Not Authorized" });
+          .json({ message: "Not Authorized" });
         return;
       }
     }
@@ -44,7 +44,7 @@ export const protect = expressAsyncHandler(
     if (!token) {
       res
         .status(StatusCodes.UNAUTHORIZED)
-        .send({ message: "Not authorized, no token present" });
+        .json({ message: "Not authorized, no token present" });
       return;
     }
   }

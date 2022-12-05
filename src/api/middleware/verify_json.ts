@@ -50,7 +50,7 @@ export const verify_role_id = expressAsyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const roleId = req.body.roleId;
     if (!roleId) {
-      res.status(StatusCodes.UNAUTHORIZED).send({
+      res.status(StatusCodes.UNAUTHORIZED).json({
         status: StatusCodes.UNAUTHORIZED,
         message: "Missing roleId",
       });

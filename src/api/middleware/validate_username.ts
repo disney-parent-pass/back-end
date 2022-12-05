@@ -19,7 +19,7 @@ export const validate_username = expressAsyncHandler(
     const username = req.body.username;
 
     if (!username) {
-      res.status(StatusCodes.UNAUTHORIZED).send({
+      res.status(StatusCodes.UNAUTHORIZED).json({
         status: StatusCodes.UNAUTHORIZED,
         message: "Missing username",
       });
@@ -32,7 +32,7 @@ export const validate_username = expressAsyncHandler(
       if (userExists) {
         res
           .status(StatusCodes.USERNAME_TAKEN)
-          .send({ message: "Sorry, a user with this username already exists" });
+          .json({ message: "Sorry, a user with this username already exists" });
         return;
       }
       next();
