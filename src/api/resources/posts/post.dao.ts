@@ -1,4 +1,4 @@
-import Post from "../../../config/dbAccessFiles/post-model";
+import Post from "./post.model";
 
 class PostDao {
   async getAllPosts() {

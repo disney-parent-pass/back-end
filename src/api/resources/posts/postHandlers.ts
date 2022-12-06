@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { getPostDto, getUnixTime } from "./posts.utils";
 import { Post, PostDto } from "./types";
-import PostDao from "./models";
+import PostDao from "./post.dao";
 
 import StatusCodes from "../../utils/status_codes";
 
@@ -36,10 +36,10 @@ export function getAllPosts(_: Request, res: Response) {
   }) as PostDto[];
 
   PostDao.getAllPosts()
-    .then((posts) => {
+    .then((posts: any) => {
       return res.status(StatusCodes.OK).json({ posts });
     })
-    .catch((err) => console.log("Error retrieving posts\n:", err));
+    .catch((err: any) => console.log("Error retrieving posts\n:", err));
 }
 
 export function getPostById(req: Request, res: Response) {
