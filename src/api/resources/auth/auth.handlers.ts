@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import StatusCodes from "../../utils/status_codes";
-import userService from "../../service/user";
+import userService from "./user.service";
 
 /**
  * The function representing the 'registration' endpoint.

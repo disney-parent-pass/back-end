@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { loginUser, registerUser } from "../auth/authHandler";
+import { loginUser, registerUser } from "./auth.handlers";
 
 import { validate_username } from "../../middleware/validate_username";
 import {
