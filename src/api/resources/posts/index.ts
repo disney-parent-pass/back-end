@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { protect } from "../../middleware/verify_jwt";
 import {
   getAllPosts,
   getPostById,
@@ -8,6 +9,8 @@ import {
 } from "./postHandlers";
 
 export let router = Router();
+
+router.use(protect)
 
 router.get<{}, any>("/", getAllPosts);
 router.get<{ userId: string }, any>("/user_posts/:userId", getPostsByUserId);
