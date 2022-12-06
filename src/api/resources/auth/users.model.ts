@@ -1,5 +1,5 @@
 //const db = require('../dbConfig')
-import { db } from "../dbConfig";
+import { db } from "../../../config/dbConfig";
 
 class DbAccess {
   public async createUser(userObj: {

@@ -1,6 +1,6 @@
-import DbAccess from "../../config/dbAccessFiles/users-model";
+import DbAccess from "./users.model";
 import bcrypt from "bcryptjs";
-import StatusCodes from "../utils/status_codes";
+import StatusCodes from "../../utils/status_codes";
 
 class UserDAO {
   /**

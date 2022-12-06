@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import expressAsyncHandler from "express-async-handler";
 
-import user from "../dao/user";
+import user from "../resources/auth/user.dao";
 import StatusCodes from "../utils/status_codes";
 
 /**

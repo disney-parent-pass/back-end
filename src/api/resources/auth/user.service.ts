@@ -1,9 +1,9 @@
-import UserDAO from "../dao/user";
+import UserDAO from "./user.dao";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { secret } from "../../config/secrets";
+import { secret } from "../../../config/secrets";
 
-import StatusCodes from "../utils/status_codes";
+import StatusCodes from "../../utils/status_codes";
 
 // An  interface for the Promise in createUser
 interface UserServiceResponse {
@@ -88,7 +88,8 @@ class UserService {
           } else {
             return {
               status: StatusCodes.UNAUTHORIZED,
-              message: "Unable to locate account, check credentials and try again.",
+              message:
+                "Unable to locate account, check credentials and try again.",
             };
           }
         })
