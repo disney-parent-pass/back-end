@@ -2,10 +2,10 @@ import Post from "./post.model";
 import { NewPostDto } from "./types";
 
 class PostService {
-  async getAllPosts() {
+  public async getAllPosts() {
     return Post.getAllPosts();
   }
-  async createPost(newPost: NewPostDto) {
+  public async createPost(newPost: NewPostDto) {
     return Post.insert(newPost);
   }
 }

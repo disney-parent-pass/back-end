@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { getPostDto } from "./posts.utils";
-import { NewPostDto, PostModel, PostDto } from "./types";
+
 import PostService from "./post.service";
 
+import { getPostDto } from "./posts.utils";
+import { NewPostDto, PostModel } from "./types";
 import StatusCodes from "../../utils/status_codes";
 
 // TODO: Add express-async-handler to all router handlers
