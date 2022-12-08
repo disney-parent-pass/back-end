@@ -1,16 +1,12 @@
-import { Post, PostDto } from "./types";
+import { PostModel, PostDto } from "./types";
 
-export function getUnixTime(dateObj: Date) {
-  return Math.floor(dateObj.getTime() / 1000);
-}
-
-export function getPostDto(post: Post): PostDto {
-  const { areaRideId, isOpen, numberOfKids, parkAreaId, time } = post;
+export function getPostDto(post: PostModel): PostDto {
+  const { area_ride_id, number_of_kids, park_area_id, is_open, time } = post;
   return {
-    areaRideId,
-    isOpen,
-    numberOfKids,
-    parkAreaId,
+    areaRideId: area_ride_id,
+    isOpen: is_open,
+    numberOfKids: number_of_kids,
+    parkAreaId: park_area_id,
     time,
   } as PostDto;
 }
