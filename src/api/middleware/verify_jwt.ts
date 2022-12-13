@@ -9,7 +9,7 @@ import StatusCodes from "../utils/status_codes";
 import { JwtPayload, verify } from "jsonwebtoken";
 
 import { secret } from "../../config/secrets";
-import UserDAO from "../dao/user";
+import UserDAO from "../resources/auth/user.dao";
 
 /**
  * Verifies a valid JWT is present
