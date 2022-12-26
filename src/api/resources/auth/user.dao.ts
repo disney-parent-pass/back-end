@@ -2,6 +2,7 @@ import DbAccess from "./users.model";
 import bcrypt from "bcryptjs";
 import StatusCodes from "../../utils/status_codes";
 
+// TODO: Dissolve this, we have an over abstraction between DBAccess and Services here
 class UserDAO {
   /**
    * The Data Access layer for creating a user

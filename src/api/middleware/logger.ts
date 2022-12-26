@@ -7,7 +7,9 @@ export function logger(req: Request, _res: Response, next: NextFunction) {
   console.log(
     `[${new Date().toISOString()}] ${req.method} to ${req.url} from 
                 ${req.get("origin")} 
-                req body ${req.body} request headers ${req.headers} `,
+                req body ${JSON.stringify(
+                  req.body
+                )} request headers ${JSON.stringify(req.headers)} `,
     { ...req.headers }
   );
 

@@ -8,7 +8,7 @@ export async function up(knex: Knex): Promise<void> {
     pc.integer("post_id");
     pc.integer("next_comment");
     pc.foreign("commenter").references("users.id");
-    pc.foreign("post_id").references("posts.id");
+    pc.foreign("post_id").references("posts.id").onDelete("CASCADE");
     pc.foreign("next_comment").references("post_comments.id");
   });
 }
