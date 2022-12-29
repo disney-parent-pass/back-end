@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { validateNewPost } from "../../middleware/validate_new_post";
 import {
   getAllPosts,
   createPost,
@@ -11,7 +12,7 @@ import {
 export let router = Router();
 
 router.get<{}, any>("/", getAllPosts);
-router.post<{}, any>("/", createPost);
+router.post<{}, any>("/", validateNewPost, createPost);
 // router.get<{ userId: string }, any>("/user_posts/:userId", getPostsByUserId);
 // router.delete<{}, any>("/:postId", deletePostById);
 // router.get<{ postId: string }, any>("/:postId", getPostById);

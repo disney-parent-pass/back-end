@@ -23,15 +23,6 @@ export function getAllPosts(_: Request, res: Response) {
 }
 
 export function createPost(req: Request, res: Response) {
-  /*
-    data points of interest
-    - time
-    - number_of_kids
-    - user_id 
-    - park_area_id
-    - ared_ride_id
-  */
-  // TODO: Add middleware to validate the body before we further process the request
   const { time, numberOfKids, userId, parkAreaId, areaRideId } = req.body;
   const newPost: NewPostDto = {
     time,
